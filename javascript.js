@@ -30,96 +30,14 @@ class Book {
     getRead() {
         return this.read;
     }
+
+    setRead(value) {
+        this.read = value;
+    }
 }
-
-
-function addBookToLibrary(Book) {
-    myLibrary.push(Book);
-}
-
-/*fo testing*/
-
-
-const aura = new Book("aura", "hrr", 123, "xxx");
-const fabel = new Book("bauer","me",9,"xxxxxx");
-const theHobbit = new Book("Hobbit", "JRR", 555, "placeholder");
-
-addBookToLibrary(aura);
-addBookToLibrary(fabel)
-addBookToLibrary(theHobbit);
-
-/* create left side*/
-
-/*
-const addbok = document.querySelector('.addbok');
-const formul = document.createElement('form')
-addbok.appendChild(formul);
-
-
-
-const titleDiv = document.createElement('div');
-const titleField = document.createElement('input');
-const titleLabel = document.createElement('label');
-titleField.type = "text";
-titleField.placeholder = "title"
-titleField.setAttribute('id', 'title');
-titleField.textContent = "title:"
-titleDiv.appendChild(titleField);
-titleDiv.appendChild(titleLabel);
-formul.appendChild(titleDiv)
-
-
-
-
-const authDiv = document.createElement('div');
-const authLabel = document.createElement('label');
-const authorField = document.createElement('input');
-authorField.type = "text";
-authorField.placeholder = "author"
-authorField.setAttribute('id', 'author');
-authorField.textContent = "author:"
-authDiv.appendChild(authLabel);
-authDiv.appendChild(authorField);
-formul.appendChild(authDiv);
-
-
-const pagesDiv = document.createElement('div');
-const pagesLabel = document.createElement('label');
-const pagesField = document.createElement('input');
-pagesField.type = "text";
-pagesField.placeholder = "pages"
-pagesField.setAttribute('id', 'pages');
-pagesField.textContent = "pages:"
-pagesDiv.appendChild(pagesLabel);
-pagesDiv.appendChild(pagesField);
-formul.appendChild(pagesDiv);
-
-
-const readField = document.createElement('input');
-readField.type = "text";
-readField.placeholder = "YES / NO"
-readField.setAttribute('id', 'read');
-readField.textContent = "read:"
-addbok.appendChild(readField);
-
-
-
-const subButton = document.createElement('button');
-subButton.textContent = "ADD NEW BOOX";
-subButton.setAttribute('id','sub');
-addbok.appendChild(subButton);
-
-
-const clearLibrary = document.createElement('button');
-clearLibrary.textContent = "CLEAR LIBRARY";
-clearLibrary.setAttribute('id','clearLibrary');
-addbok.appendChild(clearLibrary);
-*/
 
 subButton.onclick = () => doThis();
 clearLibrary.onclick = () => deleteAll();
-
-
 
 
 /* creates new book object and adds it to array*/
@@ -136,6 +54,7 @@ function doThis() {
     const newRead = document.getElementById('read');
     if (newRead.checked) {
         isRead = true
+        
     } else {
         isRead = false  
     }
@@ -166,7 +85,19 @@ function populateTable() {
                 case 3:
                     const status = myLibrary[i].getRead();
                     if (status == true) {
-
+                        const readButton = document.createElement('button');
+                        readButton.setAttribute('id', 'readButton')
+                        readButton.style.backgroundColor = "green";
+                        readButton.textContent = "Yes";
+                        readButton.onclick = () =>  toggle(tr.rowIndex, readButton);
+                        td.appendChild(readButton);
+                    } else {
+                        const readButton = document.createElement('button');
+                        readButton.setAttribute('id', 'readButton')
+                        readButton.style.backgroundColor = "red";
+                        readButton.textContent = "No";
+                        readButton.onclick = () =>  toggle(tr.rowIndex, readButton);
+                        td.appendChild(readButton);
                     }
                     break;
                 case 4:
@@ -199,7 +130,22 @@ function updateTable() {
                     td.textContent = myLibrary[myLibrary.length-1].getPages();
                     break;
                 case 3:
-                    td.textContent = myLibrary[myLibrary.length-1].getRead();
+                    const status = myLibrary[myLibrary.length-1].getRead();
+                    if (status == true) {
+                        const readButton = document.createElement('button');
+                        readButton.setAttribute('id', 'readButton');
+                        readButton.style.backgroundColor = "green";
+                        readButton.textContent = "Yes";
+                        readButton.onclick = () =>  toggle(tr.rowIndex, readButton);
+                        td.appendChild(readButton);
+                    } else {
+                        const readButton = document.createElement('button');
+                        readButton.setAttribute('id', 'readButton')
+                        readButton.style.backgroundColor = "red";
+                        readButton.textContent = "No";
+                        readButton.onclick = () =>  toggle(tr.rowIndex, readButton);
+                        td.appendChild(readButton);
+                    }
                     break;
                 case 4:
                     const thrashButton = document.createElement('input');
@@ -211,6 +157,26 @@ function updateTable() {
             }
         }
     }
+}
+
+function toggle(index, readButton) {
+    let toggler = myLibrary[index -1].getRead();
+    if (toggler) {
+        readButton.style.backgroundColor = "red";
+        readButton.textContent = "No";
+        myLibrary[index - 1].setRead(false);
+    } else {
+        readButton.style.backgroundColor = "green";
+        readButton.textContent = "Yes";
+        myLibrary[index - 1].setRead(true);
+    }
+
+}
+
+
+
+function addBookToLibrary(Book) {
+    myLibrary.push(Book);
 }
 
 function deleteAll() {

@@ -7,32 +7,48 @@
 }
 
 body {
-    background-color: gainsboro;
+    background-color: teal;
     height: 100vh;
 
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
+
 table {
-    margin: 50px;
-    background-color: aquamarine;
-    border: 20px solid salmon;
-}
-
-th {
-    background-color: brown;
-}
-
-table, th, td {
+    min-width: 400px;
+    background-color: rgba(245, 222, 179, 0.39);
+    border-radius: 20px;
     padding: 20px;
-    border: 1px solid black;
+    
+}
+
+
+tr {
+    margin: 2px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 3px;
+
+}
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.433);
+    
+}
+
+#tableOfBooks {
     border-collapse: collapse;
+    margin: 25px 0px;
+    font-size: large;
+    font-family: monospace;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgb(199, 251, 63);
+    border-radius: 10px;
 }
 
-tr:nth-child(even) {
-    background-color:white;
+#headerRow {
+    background-color: crimson;
+    color: #ffffff;
 }
-
 
 .container {
     display: grid;
@@ -46,10 +62,8 @@ tr:nth-child(even) {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     gap: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    box-shadow: 10px 0px 14px -2px gray;
 }
 
 .leftside > p {
@@ -59,13 +73,15 @@ tr:nth-child(even) {
 
 .leftside > form > div{
     margin: 10px;
+    flex: 1;
     
 }
 
 .rightside {
     height:auto;
     min-height: 100vh;
-    background-color: rosybrown;
+    background: rgb(199, 251, 63);
+    background: radial-gradient(circle, rgb(108, 132, 46) 0%, rgb(179, 48, 43) 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -92,6 +108,20 @@ tr:nth-child(even) {
 
 
 
+
+
+
+
+
+#readButton {
+    width: 30px;
+    height: 30px;
+}
+
+#readButton:hover {
+    transform: scale(1.2);
+}
+
 .trashButton {
     background-image: url(./images/trashcan.png);
     background-color: gray;
@@ -104,6 +134,15 @@ tr:nth-child(even) {
 
 .trashButton:hover {
     background-color: red;
+}
+
+
+.footer {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
     
 
