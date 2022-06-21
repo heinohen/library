@@ -93,6 +93,11 @@ clearLibrary.setAttribute('id','clearLibrary');
 addbok.appendChild(clearLibrary);
 
 
+subButton.onclick = () => doThis();
+clearLibrary.onclick = () => removeAllBooks();
+
+
+
 
 
 function doThis() {
@@ -115,37 +120,36 @@ function doThis() {
 /*leftside booklist*/
 const booklist = document.querySelector('.booklist');
 booklist.textContent = "hello from the js side"
-createTable();
+
+
+
 
 const tableLength = myLibrary.length;
 console.log(tableLength);
 
+const tableOfBooks = document.createElement('table');
+tableOfBooks.setAttribute('id', 'tableOfBooks');
+tableOfBooks.style.width = "300px";
+const headerRow = document.createElement('tr');
+const titleOfBook = document.createElement('th');
+const authorOfBook = document.createElement('th');
+const pagesOfBook = document.createElement('th');
+const readThisBook = document.createElement('th');
+titleOfBook.textContent = "Title";
+authorOfBook.textContent = "Author";
+pagesOfBook.textContent = "Pages";
+readThisBook.textContent = "Read?";
 
-function createTable() {
-    const tableOfBooks = document.createElement('table');
-    tableOfBooks.setAttribute('id', 'tableOfBooks');
+headerRow.appendChild(titleOfBook);
+headerRow.appendChild(authorOfBook);
+headerRow.appendChild(pagesOfBook);
+headerRow.appendChild(readThisBook);
+tableOfBooks.appendChild(headerRow);
+booklist.appendChild(tableOfBooks);
+populateTable();
 
-    tableOfBooks.style.width = "300px";
-
-
-    const headerRow = document.createElement('tr');
-    const titleOfBook = document.createElement('th');
-    const authorOfBook = document.createElement('th');
-    const pagesOfBook = document.createElement('th');
-    const readThisBook = document.createElement('th');
-    titleOfBook.textContent = "Title";
-    authorOfBook.textContent = "Author";
-    pagesOfBook.textContent = "Pages";
-    readThisBook.textContent = "Read?";
-
-    headerRow.appendChild(titleOfBook);
-    headerRow.appendChild(authorOfBook);
-    headerRow.appendChild(pagesOfBook);
-    headerRow.appendChild(readThisBook);
-    tableOfBooks.appendChild(headerRow);
-    booklist.appendChild(tableOfBooks);
-
-
+/* this one creates the table */
+function populateTable() {
     for (let i = 0; i < myLibrary.length; i++) {
         const tr = tableOfBooks.insertRow();
         tr.setAttribute('id', 'row')
@@ -169,7 +173,10 @@ function createTable() {
                     thrashButton.type = "button";
                     thrashButton.className = "trashButton";
                     thrashButton.value = "Trash it!";
+                    thrashButton.setAttribute('id', 'trash');
+                    thrashButton.onclick = () =>  removeOneBook(tr.rowIndex);
                     td.appendChild(thrashButton);
+                    console.log(thrashButton.attributes)
                     break;   
             }
         }
@@ -177,7 +184,7 @@ function createTable() {
 }
 
 function updateTable() {
-    if (tableLength != myLibrary.length) {
+    if (tableLength < myLibrary.length) {
         const tr = tableOfBooks.insertRow();
         for (let j = 0; j < 5; j++) {
             const td = tr.insertCell();
@@ -198,7 +205,8 @@ function updateTable() {
                     const thrashButton = document.createElement('input');
                     thrashButton.type = "button";
                     thrashButton.className = "trashButton";
-                   
+                    thrashButton.setAttribute('id', 'trash');
+                    thrashButton.onclick = () =>  removeOneBook(tr.rowIndex);
                     thrashButton.value = "Trash it!";
                     td.appendChild(thrashButton);    
             }
@@ -214,8 +222,11 @@ function removeAllBooks() {
     }
 }
 
-
-
-subButton.onclick = () => doThis();
-clearLibrary.onclick = () => removeAllBooks();
-console.table(myLibrary)
+function removeOneBook(index) {
+    console.log(index);
+    const removeThis = index -1;
+    console.log(removeThis);
+    myLibrary.splice(removeThis, 1);
+    removeAllBooks();
+    populateTable();
+}
