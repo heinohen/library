@@ -1,44 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: #0074D9;
+    background-color: gainsboro;
+    height: 100vh;
+
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 table {
-    background-color: lightblue;
-
+    margin: 50px;
+    background-color: aquamarine;
+    border: 20px solid salmon;
 }
 
-table td {
-    border-bottom: 1px solid;
-    border-left: 1px solid;
-    text-align: center;
+th {
+    background-color: brown;
 }
 
-.header {
-    height: 500px;
-    width: auto;
-    background-color: #DDDDDD;
-    display: flex;
-    flex-direction: row;
-
-    justify-content: space-between;
-    margin: 30px;
-
-}
-
-.header > div {
+table, th, td {
+    padding: 20px;
     border: 1px solid black;
-    height: 30px;
-    width: 300px;
-    background-color: #7FDBFF;
+    border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+    background-color:white;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.leftside {
+    height:auto;
+    min-height: 100vh;
+    background-color: gainsboro;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    align-items: center;
+    gap: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    box-shadow: 10px 0px 14px -2px gray;
+}
+
+.leftside > p {
+    font-size: 40px;
+    font-family: 'Old Standard TT', serif;
+}
+
+.leftside > form > div{
+    margin: 10px;
+    
+}
+
+.rightside {
+    height:auto;
+    min-height: 100vh;
+    background-color: rosybrown;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.topic {
+    background-color: aliceblue;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 40px;
+    font-size: 50px;
+    box-shadow: 10px 0px 14px -2px gray;
+
 }
 
 .addbok {
@@ -48,21 +89,21 @@ table td {
     justify-content: space-between;
 }
 
-.booklist {
-    width: 400px;
-}
 
-.tableOfBooks > {
-    background-color: rebeccapurple;
-}
+
 
 .trashButton {
+    background-image: url(./images/trashcan.png);
     background-color: gray;
-    width: auto;
-    padding: 5px;
-    
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+    border: none;
+    cursor: pointer;
 }
 
 .trashButton:hover {
     background-color: red;
 }
+    
+
