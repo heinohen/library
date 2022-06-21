@@ -42,6 +42,8 @@ clearLibrary.onclick = () => deleteAll();
 
 /* creates new book object and adds it to array*/
 function doThis() {
+
+    console.log('clad');
     const newTitle = document.getElementById('title').value;
     const newAuthor = document.getElementById('author').value;
     const newPages = document.getElementById('pages').value;
@@ -116,6 +118,7 @@ function populateTable() {
 /*update table*/
 function updateTable() {
     if (tableOfBooks.rows.length <= myLibrary.length) {
+
         const tr = tableOfBooks.insertRow();
         for (let j = 0; j < 5; j++) {
             const td = tr.insertCell();
@@ -156,7 +159,8 @@ function updateTable() {
                     td.appendChild(thrashButton);    
             }
         }
-    }
+    } 
+    
 }
 
 function toggle(index, readButton) {
