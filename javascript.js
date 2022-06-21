@@ -14,6 +14,22 @@ class Book {
             + this.pages + " "
             + this.read;
     }
+
+    getTitle() {
+        return this.title;
+    }
+
+    getAuthor() {
+        return this.author;
+    }
+
+    getPages() {
+        return this.pages;
+    }
+
+    getRead() {
+        return this.read;
+    }
 }
 
 
@@ -71,17 +87,26 @@ subButton.textContent = "ADD NEW BOOX";
 subButton.setAttribute('id','sub');
 addbok.appendChild(subButton);
 
+const clearLibrary = document.createElement('button');
+clearLibrary.textContent = "CLEAR LIBRARY";
+clearLibrary.setAttribute('id','clearLibrary');
+addbok.appendChild(clearLibrary);
 
-const newTitle = document.querySelector("#title");
-const newAuthor = document.querySelector("#author");
-const newPages = document.querySelector("#pages");
-const newRead = true;
 
-function doThis(newTitle, newAuthor,newPages, newRead) {
+
+
+function doThis() {
+    const newTitle = document.getElementById('title').value;
+    const newAuthor = document.getElementById('author').value;
+    const newPages = document.getElementById('pages').value;
+    const newRead = true;   
+
+    console.log(newTitle);
     let addThis = new Book(newTitle,newAuthor,newPages,newRead);
     addBookToLibrary(addThis);
     console.log(addThis.info())
-    console.log("asdfasd")
+    console.table(myLibrary)
+    updateTable();
 }
 
 
@@ -90,21 +115,107 @@ function doThis(newTitle, newAuthor,newPages, newRead) {
 /*leftside booklist*/
 const booklist = document.querySelector('.booklist');
 booklist.textContent = "hello from the js side"
+createTable();
+
+const tableLength = myLibrary.length;
+console.log(tableLength);
 
 
+function createTable() {
+    const tableOfBooks = document.createElement('table');
+    tableOfBooks.setAttribute('id', 'tableOfBooks');
 
-function updateScreen() {
-    for (i = 0; i < myLibrary.length; i++) {
-        let one_book = document.createElement('div');
-        one_book.textContent = myLibrary[i].info();
-        booklist.appendChild(one_book);
+    tableOfBooks.style.width = "300px";
+
+
+    const headerRow = document.createElement('tr');
+    const titleOfBook = document.createElement('th');
+    const authorOfBook = document.createElement('th');
+    const pagesOfBook = document.createElement('th');
+    const readThisBook = document.createElement('th');
+    titleOfBook.textContent = "Title";
+    authorOfBook.textContent = "Author";
+    pagesOfBook.textContent = "Pages";
+    readThisBook.textContent = "Read?";
+
+    headerRow.appendChild(titleOfBook);
+    headerRow.appendChild(authorOfBook);
+    headerRow.appendChild(pagesOfBook);
+    headerRow.appendChild(readThisBook);
+    tableOfBooks.appendChild(headerRow);
+    booklist.appendChild(tableOfBooks);
+
+
+    for (let i = 0; i < myLibrary.length; i++) {
+        const tr = tableOfBooks.insertRow();
+        tr.setAttribute('id', 'row')
+        for (let j = 0; j < 5; j++) {
+            const td = tr.insertCell();
+            switch(j) {
+                case 0:    
+                    td.textContent = myLibrary[i].getTitle();
+                    break;
+                case 1:
+                    td.textContent = myLibrary[i].getAuthor();
+                    break;
+                case 2:
+                    td.textContent = myLibrary[i].getPages();
+                    break;
+                case 3:
+                    td.textContent = myLibrary[i].getRead();
+                    break;
+                case 4:
+                    const thrashButton = document.createElement('input');
+                    thrashButton.type = "button";
+                    thrashButton.className = "trashButton";
+                    thrashButton.value = "Trash it!";
+                    td.appendChild(thrashButton);
+                    break;   
+            }
+        }
+    }
+}
+
+function updateTable() {
+    if (tableLength != myLibrary.length) {
+        const tr = tableOfBooks.insertRow();
+        for (let j = 0; j < 5; j++) {
+            const td = tr.insertCell();
+            switch(j) {
+                case 0:    
+                    td.textContent = myLibrary[myLibrary.length-1].getTitle();
+                    break;
+                case 1:
+                    td.textContent = myLibrary[myLibrary.length-1].getAuthor();
+                    break;
+                case 2:
+                    td.textContent = myLibrary[myLibrary.length-1].getPages();
+                    break;
+                case 3:
+                    td.textContent = myLibrary[myLibrary.length-1].getRead();
+                    break;
+                case 4:
+                    const thrashButton = document.createElement('input');
+                    thrashButton.type = "button";
+                    thrashButton.className = "trashButton";
+                   
+                    thrashButton.value = "Trash it!";
+                    td.appendChild(thrashButton);    
+            }
+        }
+    }
+}
+
+function removeAllBooks() {
+    let headers = 1;
+
+    while (tableOfBooks.rows.length > headers) {
+        tableOfBooks.deleteRow(tableOfBooks.rows.length -1 );
     }
 }
 
 
 
 subButton.onclick = () => doThis();
-
-
-updateScreen()
+clearLibrary.onclick = () => removeAllBooks();
 console.table(myLibrary)

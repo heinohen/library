@@ -8,6 +8,17 @@ body {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
+table {
+    background-color: lightblue;
+
+}
+
+table td {
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    text-align: center;
+}
+
 .header {
     height: 500px;
     width: auto;
@@ -35,4 +46,23 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+.booklist {
+    width: 400px;
+}
+
+.tableOfBooks > {
+    background-color: rebeccapurple;
+}
+
+.trashButton {
+    background-color: gray;
+    width: auto;
+    padding: 5px;
+    
+}
+
+.trashButton:hover {
+    background-color: red;
 }
