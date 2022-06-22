@@ -10,31 +10,31 @@
 <body>
     <div class="container">
         <div class="leftside">
-            <p>LiBrArY</p>
+            <p id = 'leftHeader'>LIBRARY</p>
             <div class="addbok">
-                <p>add new book!</p>
-                <form>
+                <span>Your library contains: <span id = "amount"></span>books</span>
+                <form class = "addBookForm">
                     <div class="titleDiv">
-                        <label for="title">Title of the book:</label>
-                        <input type="text" id="title" placeholder="title of book" autocomplete="">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" placeholder="insert title" autocomplete="">
                     </div>
                     <div class="authorDiv">
-                        <label for="author">AUTHOR</label>
-                        <input type="text" id="author"autocomplete="">
+                        <label for="author">Author:</label>
+                        <input type="text" id="author"placeholder="insert author"autocomplete="">
                     </div>
                     <div class="pagesDiv">
-                        <label for="pages">pages...</label>
-                        <input type="text" id="pages"autocomplete="">
+                        <label for="pages">Pagecount:</label>
+                        <input type="text" id="pages"autocomplete=""placeholder="How many pages?">
                     </div>
                     <div class="readDiv">
                         <input type="checkbox" name="read" id="read">
                         <label for="read">Have you read it?</label>
                     </div>
                     <div class="sub">
-                        <input type="button" value="SUB" id = "subButton">
+                        <input type="button" value="SUBMIT TO LIBRARY" id = "subButton">
                     </div>
                     <div class="clear">
-                        <input type="button" value="DEL ALL" id = "clearLibrary">
+                        <input type="button" value="DELETE ALL BOOKS" id = "clearLibrary">
                     </div>
                 </form>
             </div>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="rightside">
-            <span class = "topic">Here are the contents of your library</span>
+            <span class = "topic">Here are your books</span>
             <div class="booklist">
                 <table id="tableOfBooks">                
                         <tr id = "headerRow">

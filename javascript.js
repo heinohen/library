@@ -42,8 +42,6 @@ clearLibrary.onclick = () => deleteAll();
 
 /* creates new book object and adds it to array*/
 function doThis() {
-
-    console.log('clad');
     const newTitle = document.getElementById('title').value;
     const newAuthor = document.getElementById('author').value;
     const newPages = document.getElementById('pages').value;
@@ -69,6 +67,7 @@ populateTable();
 
 /* this one populates the table */
 function populateTable() {
+    refreshCount()
     for (let i = 0; i < myLibrary.length; i++) {
         const tr = tableOfBooks.insertRow();
         tr.setAttribute('id', 'row')
@@ -117,6 +116,7 @@ function populateTable() {
 
 /*update table*/
 function updateTable() {
+    refreshCount()
     if (tableOfBooks.rows.length <= myLibrary.length) {
 
         const tr = tableOfBooks.insertRow();
@@ -191,6 +191,7 @@ function deleteAll() {
     }
 
     myLibrary = [];
+    refreshCount()
 }
 
 function removeAllBooks() {
@@ -207,3 +208,9 @@ function removeOneBook(index) {
     removeAllBooks(); /*just removes all after splicing */
     populateTable(); /*and adds them to screen after*/
 }
+
+function refreshCount() {
+    const amount = document.getElementById('amount');
+    amount.textContent = myLibrary.length + " "
+}
+
